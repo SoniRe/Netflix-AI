@@ -4,10 +4,31 @@ import { signOut } from "firebase/auth";
 import { auth } from "./../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { addUser, removeUser } from "../utils/userSlice";
+import { useDispatch } from "react-redux";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        navigate("/browse");
+      } else {
+        // User is signed out
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -30,7 +51,7 @@ const Header = () => {
             <h1 className="text-white text-base">{user.displayName}</h1>
             <button
               onClick={handleSignOut}
-              className="text-white cursor-pointer font-semibold hover:underline text-base"
+              className="text-white cursor-pointer font-semibold hover:underline text-sm"
             >
               Sign Out
             </button>

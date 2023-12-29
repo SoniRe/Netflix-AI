@@ -43,7 +43,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           // Signed in
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -69,7 +68,6 @@ const Login = () => {
               dispatch(
                 addUser({ uid: uid, email: email, displayName: displayName })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               setErrorMessage(error.errorCode + " " + error.errorMessage);
