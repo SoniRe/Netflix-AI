@@ -30,7 +30,7 @@ const Header = () => {
             <h1 className="text-white text-base">{user.displayName}</h1>
             <button
               onClick={handleSignOut}
-              className="text-white cursor-pointer font-semibold hover:underline text-sm"
+              className="text-white cursor-pointer font-semibold hover:underline text-base"
             >
               Sign Out
             </button>
