@@ -1,5 +1,9 @@
 const SecondaryContainer = () => {
-  return <h1>Secondary Container</h1>;
+  return (
+    <div>
+      <h1>Hello</h1>
+    </div>
+  );
 };
 
 export default SecondaryContainer;
