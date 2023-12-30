@@ -47,5 +47,13 @@
       - Movie List x N
 
 - NetflixGPT
+
   - Search Bar
   - Movie Suggestions
+
+- SecondaryContainer
+  MovieList - Popular
+  - MovieCards X n
+    MovieList - Now Playing
+    MovieList - Trending Now
+    MovieList - Documentary
