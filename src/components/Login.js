@@ -3,7 +3,6 @@ import backgroundImage from "./../assets/background-image.jpg";
 import { useState, useRef } from "react";
 import { checkValidData } from "./../utils/validate";
 import { auth } from "./../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -15,7 +14,6 @@ import { addUser } from "../utils/userSlice";
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const name = useRef(null);
