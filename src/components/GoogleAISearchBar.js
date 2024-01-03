@@ -10,6 +10,7 @@ const GoogleAISearchBar = () => {
   const langKey = useSelector((store) => store.config.lang);
   const dispatch = useDispatch();
   const searchText = useRef(null);
+  const [found, setFound] = useState(true);
 
   // Search movie in TMDB
   const searchMovieTMDB = async (movieName) => {
@@ -25,6 +26,8 @@ const GoogleAISearchBar = () => {
   };
 
   const handleGptSearchClick = async () => {
+    setFound(false);
+
     const gptQuery =
       "Act as a Movie Recommendation system and suggest some movies for the query : " +
       searchText.current?.value +
@@ -59,6 +62,8 @@ const GoogleAISearchBar = () => {
         movieResults: tmdbResults,
       })
     );
+
+    setFound(true);
   };
 
   return (
@@ -80,6 +85,8 @@ const GoogleAISearchBar = () => {
           {lang[langKey].search}
         </button>
       </form>
+
+      {!found && <Shimmer />}
     </div>
   );
 };
