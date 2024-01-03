@@ -24,32 +24,3 @@
   );
   border-radius: 10px;
 }
-
-.slick-arrow {
-  scale: 150%;
-  margin-top: 2.8vw;
-  background-color: rgb(49, 49, 49) !important;
-  height: 12.1vw !important;
-  width: 1.3vw !important;
-  position: relative;
-  z-index: 99;
-  opacity: 70%;
-}
-
-.sliding button {
-  display: none !important;
-}
-
-.sliding:hover button {
-  display: block !important;
-}
-
-.slick-prev {
-  border-top-left-radius: 1vw;
-  border-bottom-left-radius: 1vw;
-}
-
-.slick-next {
-  border-top-right-radius: 1vw;
-  border-bottom-right-radius: 1vw;
-}

@@ -4,10 +4,15 @@ import GoogleAIMovieSuggestion from "./GoogleAIMovieSuggestion";
 
 const GoogleAISearchPage = () => {
   return (
-    <div>
-      <img src={backgroundImage} alt="" />
+    <div className="min-h-screen min-w-screen ">
+      <div className="absolute h-full w-full top-0 object-cover z-10 bg-black opacity-50"></div>
+      <img
+        className="absolute h-full w-full top-0 object-cover"
+        src={backgroundImage}
+        alt=""
+      />
 
-      <div className="absolute top-[30%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
+      <div>
         <GoogleAISearchBar />
         <GoogleAIMovieSuggestion />
       </div>
