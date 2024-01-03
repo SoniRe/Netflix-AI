@@ -1,18 +1,18 @@
 import backgroundImage from "./../assets/background-image.jpg";
-import GptSearchBar from "./GptSearchBar";
-import GptMovieSuggestion from "./GptMovieSuggestion";
+import GoogleAISearchBar from "./GoogleAISearchBar";
+import GoogleAIMovieSuggestion from "./GoogleAIMovieSuggestion";
 
-const GptSearch = () => {
+const GoogleAISearchPage = () => {
   return (
     <div>
       <img src={backgroundImage} alt="" />
 
       <div className="absolute top-[30%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
-        <GptSearchBar />
-        <GptMovieSuggestion />
+        <GoogleAISearchBar />
+        <GoogleAIMovieSuggestion />
       </div>
     </div>
   );
 };
 
-export default GptSearch;
+export default GoogleAISearchPage;

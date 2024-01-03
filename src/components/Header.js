@@ -81,7 +81,7 @@ const Header = () => {
               "Home Page"
             ) : (
               <>
-                <i className="ri-search-line"></i>GPT Search
+                <i className="ri-search-line"></i>Google AI Search
               </>
             )}
           </button>
