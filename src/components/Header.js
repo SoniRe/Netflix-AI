@@ -54,7 +54,7 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute z-50 w-screen top-0 px-12 bg-gradient-to-b from-black flex items-center justify-between">
+    <div className="absolute z-40 w-screen top-0 px-12 bg-gradient-to-b from-black flex items-center justify-between">
       <img className="w-44 cursor-pointer" src={headerLogo} alt="" />
 
       {user && (
