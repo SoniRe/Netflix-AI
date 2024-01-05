@@ -13,7 +13,7 @@ const SecondaryContainer = () => {
   useMovieCategories();
 
   return (
-    <div className=" mt-[-20vw] px-6 relative z-10 pb-6">
+    <div className=" md:mt-[-20vw] px-6 relative z-10 pb-6">
       {nowPlayingMovies && (
         <MovieList title={"Now Playing"} movies={nowPlayingMovies} />
       )}

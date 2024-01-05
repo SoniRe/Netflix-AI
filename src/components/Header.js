@@ -54,11 +54,11 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute z-40 w-screen top-0 px-12 bg-gradient-to-b from-black flex items-center justify-between">
+    <div className="absolute z-40 w-screen top-0 px-12 bg-gradient-to-b from-black flex items-center flex-col md:flex-row justify-between">
       <img className="w-44 cursor-pointer" src={headerLogo} alt="" />
 
       {user && (
-        <div className="flex item-center justify-center gap-4">
+        <div className="flex item-center w-screen justify-center md:justify-end gap-4">
           {showGptSearch && (
             <select
               className="px-4 h-10 mt-2 rounded"

@@ -82,12 +82,16 @@ const Login = () => {
   return (
     <div className="relative overflow-hidden">
       <Header />
-      <img src={backgroundImage} alt="" />
+      <img
+        className="h-screen object-cover w-screen"
+        src={backgroundImage}
+        alt=""
+      />
       <form
         onSubmit={(e) => {
           e.preventDefault();
         }}
-        className="w-[29%] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col p-12 bg-black/85 rounded"
+        className=" w-full md:w-[29%] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col p-12 bg-black/85 rounded"
       >
         <h1 className="font-semibold text-white text-4xl mb-9">
           {isSignInForm ? "Sign In" : "Sign Up"}

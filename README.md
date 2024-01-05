@@ -38,7 +38,15 @@
 - GPT Search Page
 - GPT Seach Bar
 - (FEATURE) Multi - Language Feature in our App
-- Integrate GPT APIs(get API key)
+- Get Gemini Pro (Google AI) APIs(get API key)
+- Gemini Pro API Call
+- Fetched Google AI Suggestions from TMDB
+- Created Gpt Slice & Added the Data
+- Reused MovieList component to make Movie Suggestion Container
+- Memoization
+- Adding .env file
+- Adding .env file to gitignore
+- Made our Site Responsive
 
 # Features
 

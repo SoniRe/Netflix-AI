@@ -5,12 +5,14 @@ import genAI from "../utils/geminiai";
 import { API_OPTIONS } from "../utils/constants";
 import { addGptMovieResult } from "./../utils/gptSlice";
 import Shimmer from "./Shimmer";
+import { useNavigate } from "react-router-dom";
 
 const GoogleAISearchBar = () => {
   const langKey = useSelector((store) => store.config.lang);
   const dispatch = useDispatch();
   const searchText = useRef(null);
   const [found, setFound] = useState(true);
+  const navigate = useNavigate();
 
   // Search movie in TMDB
   const searchMovieTMDB = async (movieName) => {
@@ -26,60 +28,64 @@ const GoogleAISearchBar = () => {
   };
 
   const handleGptSearchClick = async () => {
-    setFound(false);
+    try {
+      setFound(false);
 
-    const gptQuery =
-      "Act as a Movie Recommendation system and suggest some movies for the query : " +
-      searchText.current?.value +
-      ". Only give name of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar,Sholay,Don,Golmaal,Koi Mil Gaya";
+      const gptQuery =
+        "Act as a Movie Recommendation system and suggest some movies for the query : " +
+        searchText.current?.value +
+        ". Only give name of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar,Sholay,Don,Golmaal,Koi Mil Gaya";
 
-    // Make an API call to Gemini Pro API and get movie Results
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-    const result = await model.generateContent(gptQuery);
+      // Make an API call to Gemini Pro API and get movie Results
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const result = await model.generateContent(gptQuery);
 
-    if (!result) {
-      // TO-DO
-      //  Error handling
-      return;
+      if (!result) {
+        // TO-DO
+        //  Error handling
+        return;
+      }
+
+      const response = await result.response;
+      const text = await response.text();
+
+      const geminiMovies = text.split(",");
+
+      // For each movie Search TMDB API
+      const promiseArray = geminiMovies.map((movieName) =>
+        searchMovieTMDB(movieName)
+      );
+      // promiseArray -> [Promise, Promise, Promise, Promise, Promise]
+
+      const tmdbResults = await Promise.all(promiseArray);
+
+      dispatch(
+        addGptMovieResult({
+          movieNames: geminiMovies,
+          movieResults: tmdbResults,
+        })
+      );
+
+      setFound(true);
+    } catch (error) {
+      navigate("/");
     }
-
-    const response = await result.response;
-    const text = await response.text();
-
-    const geminiMovies = text.split(",");
-
-    // For each movie Search TMDB API
-    const promiseArray = geminiMovies.map((movieName) =>
-      searchMovieTMDB(movieName)
-    );
-    // promiseArray -> [Promise, Promise, Promise, Promise, Promise]
-
-    const tmdbResults = await Promise.all(promiseArray);
-
-    dispatch(
-      addGptMovieResult({
-        movieNames: geminiMovies,
-        movieResults: tmdbResults,
-      })
-    );
-
-    setFound(true);
   };
 
   return (
-    <div className="mt-[15vw] relative z-10">
+    <div className="mt-[60vw] md:mt-[15vw] relative z-10">
       <form
         onSubmit={(e) => e.preventDefault()}
         className="w-screen flex justify-center items-center"
       >
         <input
           ref={searchText}
-          className="p-4 m-4 rounded w-1/2 focus:outline-purple-500 "
+          className="p-4 ml-2 mr-1 md:m-4 rounded w-[80vw] md:w-1/2 focus:outline-purple-500 "
           type="text"
           placeholder={lang[langKey].placeholder}
         />
         <button
-          className="text-white py-4 px-8 bg-red-600 rounded"
+          className="text-white py-4 px-4 m-2 md:m-0 md:px-8 bg-red-600 rounded"
           onClick={handleGptSearchClick}
         >
           {lang[langKey].search}
