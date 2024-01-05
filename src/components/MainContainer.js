@@ -14,7 +14,7 @@ const MainContainer = () => {
   return (
     <div>
       <VideoBackground movieId={id} />
-      <VideoTitle title={original_title} overview={overview} />
+      <VideoTitle movieId={id} title={original_title} overview={overview} />
     </div>
   );
 };

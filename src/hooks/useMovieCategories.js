@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
   addPopularMovies,
@@ -9,11 +9,14 @@ import { API_OPTIONS } from "../utils/constants";
 
 const useMovieCategories = () => {
   const dispatch = useDispatch();
+  const popularMovies = useSelector((store) => store.movies.popularMovies);
+  const topRatedMovies = useSelector((store) => store.movies.topRatedMovies);
+  const upcomingMovies = useSelector((store) => store.movies.upcomingMovies);
 
   useEffect(() => {
-    getMovies("popular");
-    getMovies("top_rated");
-    getMovies("upcoming");
+    !popularMovies && getMovies("popular");
+    !topRatedMovies && getMovies("top_rated");
+    !upcomingMovies && getMovies("upcoming");
   }, []);
 
   const getMovies = async (category) => {
