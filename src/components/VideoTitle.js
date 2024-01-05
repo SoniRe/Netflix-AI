@@ -22,7 +22,7 @@ const VideoTitle = ({ movieId, title, overview }) => {
         >
           <i className="ri-play-fill text-3xl"></i>Play
         </button>
-        <button className="hidden md:block hover:bg-opacity-85 bg-neutral-600 text-white  px-8 py-1 rounded flex justify-center items-center gap-2 text-base">
+        <button className="hidden hover:bg-opacity-85 bg-neutral-600 text-white  px-8 py-1 rounded md:flex md:justify-center md:items-center md:gap-2 text-base">
           <i className="ri-information-line text-3xl"></i>More Info
         </button>
       </div>
